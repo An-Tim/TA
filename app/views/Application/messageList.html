@@ -1,0 +1,138 @@
+#{extends 'main.html' /}
+#{set title:'messageList' /}
+
+<script type="text/javascript" src="@{'public/js/jquery.js'}" ></script>
+<script type="text/javascript" language="javascript" src="@{'public/js/jquery.dataTables.js'}"></script>
+<script type="text/javascript" language="javascript" src="@{'public/js/jquery-ui-tabs.js'}"></script>
+<script type="text/javascript" charset="utf-8">
+            $(document).ready(function() {
+    $("#tabs").tabs({
+    "show": function(event, ui) {
+    var table = $.fn.dataTable.fnTables(true);
+            if (table.length > 0) {
+    $(table).dataTable().fnAdjustColumnSizing();
+    }
+    }
+    });
+            $('table.display').dataTable({
+    "sScrollY": "200px",
+            "bScrollCollapse": true,
+            "bPaginate": false,
+            "bJQueryUI": true,
+            "aoColumnDefs": [
+            { "sWidth": "10%", "aTargets": [ - 1 ] }
+            ]
+    });
+    });
+</script>
+
+<!-- content -->
+<nav>
+    <ul id="menu">
+        <li class="menu_active nav1"><a href="@{Application.home(u.id)}">Главная </a></li>
+        #{if u.id==2 || u.id==4}
+        <li class="nav3"><a href="@{Application.vacancyList(u.id)}">Вакансии</a></li>
+        <li class="nav3"><a href="@{Application.userList(u.id)}">Пользователи</a></li>
+        #{/if}
+    </ul>
+</nav>
+<section id="content">
+
+
+
+    <p></p>
+    <p></p>
+    <div id="demo">
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Входящие</a></li>
+                <li><a href="#tabs-2">Отправленные</a></li>
+            </ul>
+
+
+
+            <div id="tabs-1" >
+                <table cellpadding="0" cellspacing="0" border="0" class="display" id="example1" >
+                    <thead>
+                        <tr>
+                            <th>Дата</th>
+                            <th>Тема</th>
+                            <th>Кому</th>
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Дата</th>
+                            <th>Тема</th>
+                            <th>Кому</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        #{list items:mes, as:'mes'}
+                        #{if mes.whom==u}
+                        #{if mes.statusMess=="прочитанно"}
+                    <td >${mes.dateMess}</td>
+                    <td class="center"><a href="@{Application.message(u.id,mes.id)}">${mes.topic}</a></td>
+                    <td >${mes.who.name}</td>
+                    #{/if}
+                    #{if mes.statusMess=="не прочитанно"}                           
+                    <td ><h4>${mes.dateMess}</h4></td>
+                    <td class="center"><h4><a href="@{Application.message(u.id,mes.id)}">${mes.topic}</a></h4></td>
+                    <td ><h4>${mes.who.name}</h4></td>                            
+                    #{/if}
+                    #{/if}
+
+                    #{/list}
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="tabs-2" >
+                <table cellpadding="0" cellspacing="0" border="0" class="display" id="example1" >
+                    <thead>
+                        <tr>
+                            <th>Дата</th>
+                            <th>Тема</th>
+                            <th>От кого</th>
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Дата</th>
+                            <th>Тема</th>
+                            <th>От кого</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        #{list items:mes, as:'mes'}
+                        #{if mes.who==u}
+                        #{if mes.statusMess=="прочитанно"}
+                    <td >${mes.dateMess}</td>
+                    <td class="center"><a href="@{Application.message(u.id,mes.id)}">${mes.topic}</a></td>
+                    <td >${mes.whom.name}</td>
+                    #{/if}
+                    #{if mes.statusMess=="не прочитанно"}                           
+                    <td ><h4>${mes.dateMess}</h4></td>
+                    <td class="center"><h4><a href="@{Application.message(u.id,mes.id)}">${mes.topic}</a></h4></td>
+                    <td ><h4>${mes.whom.name}</h4></td>                            
+                    #{/if}
+                    #{/if}
+
+                    #{/list}
+                    </tbody>
+                </table>
+            </div>
+
+
+
+        </div>
+    </div>
+    <br>
+
+    #{form @Application.newVacancy(u.id)}
+    <input type="submit" id="submitbtn" name="submitbtn" tabindex="5" value="Добавить вакансию">
+    #{/form} 
+    ${u.email}
+</section>

@@ -1,0 +1,12 @@
+.settings
+test-result
+tmp
+eclipse
+lib
+logs
+nbproject
+precompiled
+.classpath
+.project
+server.pid
+

@@ -1,16 +1,104 @@
 <!DOCTYPE html>
+<html lang="ru" class="page">
+<head>
+<title>#{get 'title' /}</title>
+       <meta charset="utf-8">
+       
+       
+  
 
-<html>
-    <head>
-        <title>#{get 'title' /}</title>
-        <meta charset="${_response_encoding}">
-        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
-        #{get 'moreStyles' /}
-        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
-        <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
-        #{get 'moreScripts' /}
-    </head>
-    <body>
-        #{doLayout /}
-    </body>
+       
+<link rel="stylesheet" href="@{'public/stylesheets/jquery-ui-1.8.4.custom.css'}" type="text/css" media="all">
+<link rel="stylesheet" href="@{'public/stylesheets/demo_page.css'}" type="text/css" media="all">
+<link rel="stylesheet" href="@{'public/stylesheets/reset.css'}" type="text/css" media="all">
+<link rel="stylesheet" href="@{'public/stylesheets/layout.css'}" type="text/css" media="all">
+<link rel="stylesheet" href="@{'public/stylesheets/style.css'}" type="text/css" media="all">
+<link rel="stylesheet" href="@{'public/stylesheets/styles.css'}" type="text/css" media="all">
+<link rel="stylesheet" href="@{'public/stylesheets/jquery-ui-1.8.4.custom.css'}" type="text/css" media="all">
+<link rel="stylesheet" href="@{'public/stylesheets/demo_table_jui.css'}" type="text/css" media="all">
+#{get 'moreStyles' /}
+
+.ui-tabs .ui-tabs-panel { padding: 10px }
+
+
+ 
+    
+ <link rel="stylesheet" type="text/css" media="all" href="http://fonts.googleapis.com/css?family=Skranji:400,700|Oxygen:400,700">
+ <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="@{'public/js/jscharts.js'}"></script>
+<script type="text/javascript" src="@{'public/js/jquery-1.4.2.js'}" ></script>
+<script type="text/javascript" src="@{'public/js/cufon-replace.js'}"></script>
+<script type="text/javascript" src="@{'public/js/Amaranth_400.font.js'}"></script>
+<script type="text/javascript" src="@{'public/js/script.js'}"></script>
+<script type="text/javascript" src="@{'public/js/scroll.js'}"></script>
+<script type="text/javascript" src="@{'public/js/jquery.nivo.slider.pack.js'}"></script>
+<script type="text/javascript" src="@{'public/js/atooltip.jquery.js'}"></script>
+<script type="text/javascript" src="@{'public/js/jquery.leanModal.min.js'}"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('a[rel*=leanModal]').leanModal({ top : 200, closeButton: ".modal_close" });
+        });
+    </script>
+    
+
+    #{get 'moreScripts' /}
+</head>
+<body class="body">
+<div class="body1">
+	<div class="body2">
+		<div class="main">
+<!-- header -->
+			<header>
+				<div class="wrapper">
+					<nav>
+						<ul id="top_nav">
+							<li class="bg_none"><a href="@{Application.home(u.id)}" class="icon1"></a></li>							
+                                                        #{if u.id==1}
+                                                        <li><a rel="leanModal" href="#signup" class="icon4"></a></li>
+                                                        #{/if}
+                                                        #{if u.id!=1}
+                                                        <li><a href="@{Application.userPage(u.id, u.id)}"  class="icon4"></a></li>
+                                                        #{/if}
+                                                        #{if u.id!=1}
+                                                        <li><a href="@{Application.messageList(u.id)}" class="icon2"></a></li> 
+                                                        <li><a href="@{Application.exit(u.id)}" class="icon3"></a></li>
+                                                        #{/if}
+						</ul>
+					</nav>
+				</div>
+				<div class="wrapper">
+					<h1><a href="@{Application.home(u.id)}" id="logo">KoNya Consulting</a></h1>
+                                        
+					
+				</div>
+			</header>
+<!-- / header -->
+		</div>
+	</div>
+</div>
+
+
+
+
+<div class="wrapper">
+	<div class="main">
+		
+			 #{doLayout /}
+		
+	</div>
+</div>
+<div class="body3">
+	<div class="body4">
+		<div class="main">
+<!-- footer -->
+			<footer>
+				<a href="#page_Home" id="footer_logo">Привет</a>
+			</footer>
+<!-- / footer -->
+		</div>
+	</div>
+</div>
+    
+<script type="text/javascript"> Cufon.now(); </script>
+</body>
 </html>

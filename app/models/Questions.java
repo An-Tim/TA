@@ -20,10 +20,21 @@ public class Questions extends Model {
  
     
     public String question;
+    public int numQuest;
+    public int valueQuest;
+    
+    @ManyToOne
+    public Form form;
+    
+    @OneToMany(mappedBy="quest", cascade=CascadeType.ALL)
+    public List<Variants> var;
        
-    public Questions (String q) {
+    public Questions (Form form, String q, int num, int value) {
         this.question = q;
-        
+        this.var= new ArrayList<Variants>(); 
+        this.numQuest=num;
+        this.valueQuest=value;
+        this.form = form;
     }
     
 }

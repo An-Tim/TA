@@ -1,0 +1,88 @@
+#{extends 'main.html' /}
+#{set title:'addTask' /}
+<!-- content -->
+<nav>
+    <ul id="menu">
+        <li class="menu_active nav1"><a href="@{Application.home(u.id)}">Главная </a></li>
+        <li class="nav3"><a href="@{Application.vacancyList(u.id)}">Вакансии</a></li>
+        <li class="nav3"><a href="@{Application.userList(u.id)}">Пользователи</a></li>
+
+    </ul>
+</nav>
+<!-- content -->
+<section id="content">
+    <div id="w">
+
+
+        <!--    public Form (Vacancy vac, String name, String desc, String check, String status)-->
+
+        <form id="contactform" name="contact" method="post" action="#">
+
+            #{form @Application.saveTask(u.id)}
+
+            #{/form}
+
+            #{form @Application.saveTask(u.id,form.id)}
+
+            <div class="row">
+
+                <div class="row">
+                    <h1>${form.nameForm}</h1>
+                </div>
+
+            </div>
+            <br><br><br><br><br>
+
+
+            <div class="row">
+                <label for="name">Задание: <span class="req"></span></label>
+                <label1 for="name"><textarea name="question" id="question" class="txtarea" tabindex="4" ></textarea> <span class="req"></span></label1>
+
+                <label for="name">Правильный ответ: <span class="req"></span></label>
+                <label1 for="name"><textarea name="answers" id="answers" class="txtarea" tabindex="4" ></textarea> <span class="req"></span></label1>
+
+
+                <label for="name">Стоимость вопроса: <span class="req"></span></label>
+                <select class="txtsel" name="valueQuest" id="valueQuest">
+                    <option>1 балл</option>
+                    <option>2 балл</option>
+                    <option>3 балла</option>
+                    <option>4 балла</option>
+                    <option>5 баллов</option>
+                    <option>6 баллов</option>
+                    <option>7 баллов</option>
+                    <option>8 баллов</option>
+                    <option>9 баллов</option>
+                    <option>10 баллов</option>
+
+                </select>
+
+            </div>
+
+
+
+            <HR WIDTH="80%" SIZE="3" COLOR="#8B8989">
+            <br>
+
+
+
+            <div class="center">
+                <input type="submit" id="submitbtn" name="more" tabindex="5" value="Ещё задание>>">
+            </div>
+            #{/form}
+
+            #{form @Application.readyTask(u.id,form.id)}
+
+            <input type="submit" id="submitbtn" name="ready" tabindex="5" class="marg" value="Готово">
+            #{/form}
+
+        </form>
+    </div>
+
+
+    <p></p>
+    <p></p>
+ ${u.email}
+</section>
+
+<!-- / content -->

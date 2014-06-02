@@ -1,0 +1,108 @@
+#{extends 'main.html' /}
+#{set title:'newVacancy' /}
+<!-- content -->
+<nav>
+    <ul id="menu">
+        <li class="menu_active nav1"><a href="@{Application.home(u.id)}">Главная </a></li>
+
+    </ul>
+</nav>
+<!-- content -->
+<section id="content">
+    <div id="w">
+
+        <h1>Новая вакансия</h1>
+
+        <!--    public String nameVacancy;
+            public String descVacancy;
+            public String experience;
+            public String statusVacancy;
+            public String salary;
+            public int amount;
+            public String time;
+            public Date dateVacancy;
+            public String function;
+            public String requirements;
+            public String conditions;-->
+
+        <form id="contactform" name="contact" method="post" action="#"><br><br><br><br><br>
+
+            #{form @Application.addVac(u.id)}
+
+            #{/form}
+
+
+            #{form @Application.addVac(u.id)}
+            <div class="row">
+                <label for="name">Название: <span class="req"></span></label>
+
+                <input type="text" name="nameVacancy" id="nameVacancy" class="txt" tabindex="1" placeholder="Стив Джобс" >
+            </div>
+
+            <div class="row1" >
+
+                <label for="name">Требуемый опыт работы: <br>  <input  name="experience" id="experience" class="txt1" tabindex="2" placeholder="" > </label> 
+
+                <label for="name">Зрплата: <br>  <input  name="salary" id="salary" class="txt1" tabindex="2" placeholder="" > <span class="req"></span></label> 
+
+                <label for="name">Тип занятости: <br>  <input  name="time" id="time" class="txt1" tabindex="2" placeholder="" > <span class="req"></span></label>
+
+            </div>
+
+
+            <div class="row">
+                <label for="name">Описание: <span class="req"></span></label>
+                <label1 for="name"><textarea name="descVacancy" id="descVacancy" class="txtarea" tabindex="4" ></textarea> <span class="req"></span></label1>
+            </div>
+
+
+
+            <div class="row">
+                <label for="name">Выполняемые функции: <span class="req"></span></label>
+                <label1 for="name"> <textarea name="function" id="function" class="txtarea" tabindex="4" ></textarea><span class="req"></span></label1>
+            </div>
+
+
+
+            <div class="row">
+                <label for="name">Требования к соискателю: <span class="req"></span></label>
+                <label1 for="name"><textarea name="requirements" id="requirements" class="txtarea" tabindex="4" ></textarea> <span class="req"></span></label1>
+            </div>
+
+
+
+            <div class="row">
+                <label for="name">Условия работы: <span class="req"></span></label>
+                <label1 for="name"><textarea name="conditions" id="conditions" class="txtarea" tabindex="4" ></textarea> <span class="req"></span></label1>
+            </div>
+
+
+            <HR WIDTH="80%" SIZE="3" COLOR="#8B8989">
+            <br>
+
+
+            <div class="row">
+                <label1 for="name">Требуемое количество человек: <input type="text" name="amount" id="amount" class="txt1" tabindex="3" placeholder="" > <span class="req"></span></label1>
+            </div>
+
+
+
+
+
+            <div class="center">
+                <input type="submit" id="submitbtn" name="submitbtn" tabindex="5" value="Добавить">
+            </div>
+
+
+
+            #{/form}
+        </form>
+    </div>
+
+
+    <p></p>
+    <p></p>
+ ${u.email}
+</section>
+
+<!-- / content -->

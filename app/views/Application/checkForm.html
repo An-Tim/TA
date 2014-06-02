@@ -1,0 +1,74 @@
+#{extends 'main.html' /}
+#{set title:'Vacancy' /}
+<!-- content -->
+<nav>
+    <ul id="menu">
+        <li class="menu_active nav1"><a href="@{Application.home(u.id)}">Главная </a></li>
+
+    </ul>
+</nav>
+<!-- content -->
+<section id="content">
+    <div id="w">
+
+        <h1>${form.nameForm}</h1>
+
+
+
+        <form id="contactform" name="contact" method="post" action="#"><br><br><br><br><br>
+
+            <div class="row1" >
+
+    
+
+                #{list items:q, as:'q'}
+                #{if (q.form.id == form.id)}
+                <q1>Вопрос:</q1> <q2>${q.question}</q2><br>
+                #{list items:var, as:'var'}
+                #{if (var.quest.id == q.id)}
+                <q3>Ответ: </q3><q2>${var.variant}</q2><br>
+                <q3>Правильный ответ: </q3><q2>${var.variant}</q2><br>
+                #{/if}
+                #{/list}
+                <label for="name">Оцените ответ: <span class="req"></span></label>
+                <select class="txtsel" name="valueQuest" id="valueQuest">
+                    <option>1 балл</option>
+                    <option>2 балл</option>
+                    <option>3 балла</option>
+                    <option>4 балла</option>
+                    <option>5 баллов</option>
+                    <option>6 баллов</option>
+                    <option>7 баллов</option>
+                    <option>8 баллов</option>
+                    <option>9 баллов</option>
+                    <option>10 баллов</option>
+
+                </select>
+                #{/if}
+                #{/list}            
+
+
+
+                <HR WIDTH="80%" SIZE="3" COLOR="#8B8989">
+                <br>
+
+
+
+               
+                <div class="center">
+                    <h2><a href="@{Application.vacancy(u.id,form.vac.id)}">Назад </a></h2>
+                </div>
+                
+
+                <HR WIDTH="80%" SIZE="3" COLOR="#8B8989">
+                <br>
+                </form>
+            </div>
+
+
+            <p></p>
+            <p></p>
+${u.email}
+            </section>
+
+            <!-- / content -->

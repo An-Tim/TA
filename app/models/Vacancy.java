@@ -28,9 +28,15 @@ public class Vacancy extends Model {
     public int amount;
     public String time;
     public Date dateVacancy;
+    public String function;
+    public String requirements;
+    public String conditions;
+    
+     @OneToMany(mappedBy="quest", cascade=CascadeType.ALL)
+    public List<Form> form;
     
        
-    public Vacancy (String name, String desc, String exp, String status, String sal, String time, int amount, Date date) {
+    public Vacancy (String name, String desc, String exp, String status, String sal, String time, int amount, Date date, String conditions, String requirements, String function) {
         this.experience = exp;
         this.statusVacancy = status;
         this.nameVacancy = name;
@@ -39,11 +45,24 @@ public class Vacancy extends Model {
         this.amount = amount;
         this.time = time;
         this.dateVacancy = date;
+        this.function = function;
+        this.conditions = conditions;
+        this.requirements = requirements;    
+        this.form = new ArrayList<Form>();        
+    }
+    
         
+    public void addVac (String name, String desc, String exp, String status, String sal, String time, int amount, Date date, String conditions, String requirements, String function)
+    {
+        Vacancy vac = new Vacancy(name, desc, exp, status, sal, time, amount, date, conditions, requirements, function).save();
                 
-        
+    }
+    
+    public  void chengeStatus (long id, String s)
+    {
+        Vacancy vac = Vacancy.findById(id);        
+       
                
-        
     }
     
 }

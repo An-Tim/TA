@@ -1,0 +1,31 @@
+#{extends 'main.html' /}
+#{set title:'message' /}
+<!-- content -->
+<nav>
+    <ul id="menu">
+        <li class="menu_active nav1"><a href="@{Application.home(u.id)}">Главная </a></li>
+
+    </ul>
+</nav>
+<!-- content -->
+<section id="content">
+    <div id="w">
+
+
+        <!--    public Form (Vacancy vac, String name, String desc, String check, String status)-->
+
+        <form id="contactform" name="contact" method="post" action="#">
+
+            <div class="row">
+                <label for="name">${mes}<span class="req"></span></label>
+
+                        </form>
+    </div>
+
+
+    <p></p>
+    <p></p>
+    ${u.email}
+</section>
+
+<!-- / content -->

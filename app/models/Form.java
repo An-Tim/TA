@@ -25,11 +25,12 @@ public class Form extends Model {
     public String checking;
     public String statusForm;
     
-    @Lob
-    public String content;
-    
+        
     @ManyToOne
     public Vacancy vac;
+    
+    @OneToMany(mappedBy="form", cascade=CascadeType.ALL)
+    public List<Questions> quest;
     
     public Form (Vacancy vac, String name, String desc, String check, String status) {
         this.vac = vac;
@@ -37,6 +38,7 @@ public class Form extends Model {
         this.nameForm = name;
         this.checking = check;
         this.descForm = desc;
+        this.quest= new ArrayList<Questions>();
         
                
         

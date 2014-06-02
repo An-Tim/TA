@@ -28,10 +28,14 @@ public class Results extends Model {
     @ManyToOne
     public User us;
     
-    public Results (User us, String status, int mark) {
+    @ManyToOne
+    public Vacancy vac;
+    
+    public Results (User us, String status, int mark, Vacancy vac) {
         this.us = us;
         this.statusRes = status;
         this.markUser = mark;
+        this.vac = vac;
     }
     
 }

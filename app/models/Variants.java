@@ -26,10 +26,10 @@ public class Variants extends Model {
     public String content;
         
     @ManyToOne
-    public Linker lin;
+    public Questions quest;
     
-    public Variants (Linker li, String vart, int cost) {
-        this.lin = li;
+    public Variants (Questions quest, String vart, int cost) {
+        this.quest = quest;
         this.variant = vart;
         this.costVariants = cost;
     }

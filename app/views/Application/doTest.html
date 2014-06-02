@@ -1,0 +1,60 @@
+#{extends 'main.html' /}
+#{set title:'Vacancy' /}
+<!-- content -->
+<nav>
+    <ul id="menu">
+        <li class="menu_active nav1"><a href="@{Application.home(u.id)}">Главная </a></li>
+
+    </ul>
+</nav>
+<!-- content -->
+<section id="content">
+    <div id="w">
+
+        <h1>${form.nameForm}</h1>
+
+
+
+        <form id="contactform" name="contact" method="post" action="#"><br><br><br><br><br>
+
+            <div class="row1" >
+
+    
+
+                #{list items:q, as:'q'}
+                #{if (q.form.id == form.id)}
+               
+                <q1>Вопрос:</q1> <q2>${q.question}</q2><br>
+                #{list items:var, as:'var'}
+                #{if (var.quest.id == q.id)}
+                <input type="radio" id="r1" name="rr" value ="1" checked="checked" /><q2>${var.variant}</q2><br>
+                #{/if}
+                #{/list}
+                #{/if}
+                #{/list}            
+
+
+
+                <HR WIDTH="80%" SIZE="3" COLOR="#8B8989">
+                <br>
+
+
+
+               
+                <div class="center">
+                    <h2><a href="@{Application.vacancy(u.id,form.vac.id)}">Готово </a></h2>
+                </div>
+                
+
+                <HR WIDTH="80%" SIZE="3" COLOR="#8B8989">
+                <br>
+                </form>
+            </div>
+
+
+            <p></p>
+            <p></p>
+${u.email}
+            </section>
+
+            <!-- / content -->

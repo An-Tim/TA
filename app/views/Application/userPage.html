@@ -1,0 +1,63 @@
+#{extends 'main.html' /}
+#{set title:'message' /}
+<!-- content -->
+<nav>
+    <ul id="menu">
+        <li class="menu_active nav1"><a href="@{Application.home(user.id)}">Главная </a></li>
+ #{if u.id==2 || u.id==4}
+        <li class="nav3"><a href="@{Application.vacancyList(u.id)}">Вакансии</a></li>
+        <li class="nav3"><a href="@{Application.userList(u.id)}">Пользователи</a></li>
+        #{/if}
+    </ul>
+</nav>
+<!-- content -->
+<section id="content">
+    <div id="w">
+
+        <!--    public Form (Vacancy vac, String name, String desc, String check, String status)-->
+
+        <form id="contactform" name="contact" method="post" action="#">
+
+            
+            <div class="row1" >                
+                <label for="name">Пользователь: <br> ${user.name} </label> <br>
+                <label for="name">EMail: <br> ${user.email} </label> 
+                <label for="name">Status: <br> ${user.statusUser} </label> 
+                    
+            
+            </div>
+             </form>
+            #{if u.id!=user.id}
+ <label for="name">Отправить сообщение пользователю: <br>  </label> <br>
+
+
+            #{form @Application.newEmail(u.id,user.id)}
+            
+            <div class="row">
+                <label for="name">Тема: <br>  <input  name="topic" id="topic" class="txt1" tabindex="2" placeholder="" > </label> <br>
+                <label for="name">Текст сообщения: <span class="req"></span></label>
+                <label1 for="name"><textarea name="ans" id="ans" class="txtarea" tabindex="4" ></textarea> <span class="req"></span></label1>
+            </div>
+
+            <div class="center">
+                <input type="submit" id="submitbtn" name="more" tabindex="5" value="Отправить>>">
+            </div>
+            #{/form}
+             #{/if}
+            <HR WIDTH="80%" SIZE="3" COLOR="#8B8989">
+            <br>
+
+
+
+            
+
+       
+    </div>
+
+
+    <p></p>
+    <p></p>
+
+</section>
+
+<!-- / content -->

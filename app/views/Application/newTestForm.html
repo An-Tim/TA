@@ -1,0 +1,68 @@
+#{extends 'main.html' /}
+#{set title:'newTask' /}
+<!-- content -->
+<nav>
+    <ul id="menu">
+        <li class="menu_active nav1"><a href="@{Application.home(u.id)}">Главная </a></li>
+
+    </ul>
+</nav>
+<!-- content -->
+<section id="content">
+    <div id="w">
+
+
+        <!--    public Form (Vacancy vac, String name, String desc, String check, String status)-->
+
+        <form id="contactform" name="contact" method="post" action="#">
+
+            #{form @Application.addTest(u.id)}
+
+            #{/form}
+
+
+            #{form @Application.addTest(u.id,vac.id)}
+            
+                    <label for="name">Тест для вакансии:</label><br>
+                    <h1>${vac.nameVacancy}</h1>
+                
+                <br><br><br><br><br>
+                <div class="row">
+                <label for="name">Название теста: <span class="req"></span></label>
+
+                <input type="text" name="name" id="name" class="txt" tabindex="1" placeholder="Задание для ${vac.nameVacancy}" >
+            </div>
+
+
+
+            <div class="row">
+                <label for="name">Описание: <span class="req"></span></label>
+                <label2 for="name"><textarea name="desc" id="desc" class="txtarea" tabindex="4" ></textarea> <span class="req"></span></label2>
+            </div>
+
+
+
+            <HR WIDTH="80%" SIZE="3" COLOR="#8B8989">
+            <br>
+
+
+
+
+
+            <div class="center">
+                <input type="submit" id="submitbtn" name="submitbtn" tabindex="5" value="Добавить">
+            </div>
+
+
+
+            #{/form}
+        </form>
+    </div>
+
+
+    <p></p>
+    <p></p>
+${u.email}
+</section>
+
+<!-- / content -->

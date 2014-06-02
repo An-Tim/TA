@@ -1,0 +1,251 @@
+#{extends 'main.html' /}
+#{set title:'newResumeForm' /}
+
+<script type="text/javascript" src="@{'public/js/jquery.js'}" ></script>
+<script type="text/javascript" language="javascript" src="@{'public/js/jquery.dataTables.js'}"></script>
+<script type="text/javascript" language="javascript" src="@{'public/js/jquery-ui-tabs.js'}"></script>
+<script type="text/javascript" charset="utf-8">
+            $(document).ready(function() {
+    $("#tabs").tabs({
+    "show": function(event, ui) {
+    var table = $.fn.dataTable.fnTables(true);
+            if (table.length > 0) {
+    $(table).dataTable().fnAdjustColumnSizing();
+    }
+    }
+    });
+            $('table.display').dataTable({
+    "sScrollY": "200px",
+            "bScrollCollapse": true,
+            "bPaginate": false,
+            "bJQueryUI": true,
+            "aoColumnDefs": [
+            { "sWidth": "10%", "aTargets": [ - 1 ] }
+            ]
+    });
+    });
+</script>
+
+<!-- content -->
+<nav>
+    <ul id="menu">
+        <li class="menu_active nav1"><a href="@{Application.home(u.id)}">Главная </a></li>
+
+    </ul>
+</nav>
+<!-- content -->
+<section id="content">
+    <div id="w">
+
+
+
+        <!--    public String nameVacancy;
+            public String descVacancy;
+            public String experience;
+            public String statusVacancy;
+            public String salary;
+            public int amount;
+            public String time;
+            public Date dateVacancy;
+            public String function;
+            public String requirements;
+            public String conditions;-->
+
+        <form id="contactform" name="contact" method="post" action="#">
+
+            #{form @Application.addVac(u.id)}
+
+            #{/form}
+
+
+            #{form @Application.addVac(u.id)}
+            <div class="row">
+                <label for="name">Вакансия: <span class="req"></span></label>
+
+                <h1>${vac.nameVacancy}</h1>
+            </div>
+            <br><br><br><br><br><br><br><br><br><br><br>
+
+            <div class="row1" >
+
+                <div id="demo">
+                    <div id="tabs">
+                        <ul>
+                            <li><a href="#tabs-1">Личные данные</a></li>
+                            <li><a href="#tabs-2">Опыт работы</a></li>
+                            <li><a href="#tabs-3">Образование</a></li>
+                            <li><a href="#tabs-4">Профессиональные навыки</a></li>
+                            <li><a href="#tabs-5">Личные качества</a></li>
+                            <li><a href="#tabs-6">Рекомендации</a></li>
+                            <li><a href="#tabs-7">Дополнительно</a></li>
+
+                        </ul>                
+                        <div id="tabs-1" >       
+                            <tbody>  
+                            <input type="checkbox" id="c1" name="cc" />
+                            <label for="c1"><span></span>Адрес: </label>
+                            <p></p> 
+                            
+                             <input type="checkbox" id="c1" name="cc" />
+                            <label for="c1"><span></span>Телефон: </label>
+                            <p></p>
+                            
+                             <input type="checkbox" id="c1" name="cc" />
+                            <label for="c1"><span></span>Паспортные данные: </label>
+                            <p></p>                            
+                            
+                            </tbody>           
+                        </div>  
+
+                        <div id="tabs-2" >       
+                            <tbody>  
+                                пока                      
+                            </tbody>           
+                        </div>
+
+                        <div id="tabs-3" >       
+                            <tbody>  
+                                3                     
+                            </tbody>           
+                        </div>
+
+                        <div id="tabs-4" >       
+                            <tbody>  
+                                4                      
+                            </tbody>           
+                        </div>
+
+                        <div id="tabs-5" >       
+                            <tbody>  
+                                5                      
+                            </tbody>           
+                        </div>
+
+                        <div id="tabs-6" >       
+                            <tbody>  
+                                6                      
+                            </tbody>           
+                        </div>
+
+                        <div id="tabs-7" >       
+                            <tbody>  
+                                7                     
+                            </tbody>           
+                        </div>
+
+                    </div>
+                </div>
+                <label for="c2"><span></span>Личные данные: </label>
+                <p></p>               
+
+                <input type="checkbox" id="c1" name="cc" />
+                <label for="c1"><span></span>Опыт работы: </label>
+                <p></p>
+
+                <input type="checkbox" id="c2" name="cc" />
+                <label for="c2"><span></span>Образование: </label>
+                <p></p>
+
+                <input type="checkbox" id="c2" name="cc" />
+                <label for="c2"><span></span>Профессиональные навыки: </label>
+                <p></p>
+
+                <input type="checkbox" id="c2" name="cc" />
+                <label for="c2"><span></span>Личные качества: </label>
+                <p></p>
+
+                <input type="checkbox" id="c2" name="cc" />
+                <label for="c2"><span></span>Рекомендации: </label>
+                <p></p>            
+
+
+                <input type="radio" id="r1" name="rr" />
+                <label for="r1"><span></span>Radio Button 1</label>
+                <p></p>
+                <input type="radio" id="r2" name="rr" />
+                <label for="r2"><span></span>Radio Button 2</label>
+
+
+                <label for="name">Требуемый опыт работы: <br>  <input  name="experience" id="experience" class="txt" tabindex="2" placeholder="" > </label> 
+
+                <label for="name">Зрплата: <br>  <input  name="salary" id="salary" class="txt" tabindex="2" placeholder="" > <span class="req"></span></label> 
+
+                <label for="name">Тип занятости: <br>  <input  name="time" id="time" class="txt" tabindex="2" placeholder="" > <span class="req"></span></label>
+
+            </div>
+
+
+            <div class="row">
+                <label for="name">Описание: <span class="req"></span></label>
+                <label1 for="name"><textarea name="descVacancy" id="descVacancy" class="txtarea" tabindex="4" ></textarea> <span class="req"></span></label1>
+            </div>
+
+
+
+            <div class="row">
+                <label for="name">Выполняемые функции: <span class="req"></span></label>
+                <label1 for="name"> <textarea name="function" id="function" class="txtarea" tabindex="4" ></textarea><span class="req"></span></label1>
+            </div>
+
+
+
+            <div class="row">
+                <label for="name">Требования к соискателю: <span class="req"></span></label>
+                <label1 for="name"><textarea name="requirements" id="requirements" class="txtarea" tabindex="4" ></textarea> <span class="req"></span></label1>
+            </div>
+
+
+
+            <div class="row">
+                <label for="name">Условия работы: <span class="req"></span></label>
+                <label1 for="name"><textarea name="conditions" id="conditions" class="txtarea" tabindex="4" ></textarea> <span class="req"></span></label1>
+            </div>
+
+
+            <HR WIDTH="80%" SIZE="3" COLOR="#8B8989">
+            <br>
+
+
+            <div class="row">
+                <label1 for="name">Требуемое количество человек: <input type="text" name="amount" id="amount" class="txt" tabindex="3" placeholder="" > <span class="req"></span></label1>
+            </div>
+
+            <div class="row">
+                <label1 for="name">Вакансия активна с: привет <span class="req"></span></label1>
+            </div>
+
+
+
+            <div class="center">
+                <input type="submit" id="submitbtn" name="submitbtn" tabindex="5" value="Добавить">
+            </div>
+
+
+
+            #{/form}
+        </form>
+    </div>
+
+
+    <p></p>
+    <p></p>
+${u.email}
+</section>
+
+<!-- / content -->
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <div>TODO write content</div>
+    </body>
+</html>

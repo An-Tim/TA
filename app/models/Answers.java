@@ -22,18 +22,16 @@ public class Answers extends Model {
     public int markAnswer;
     public String answer;
     
-    @Lob
-    public String content;
-    
+       
     @ManyToOne
     public User us;
     
     @ManyToOne
-    public Linker lin;
+    public Questions quest;
     
-    public Answers (User us, Linker li, String answer, int mark) {
+    public Answers (User us, Questions li, String answer, int mark) {
         this.us = us;
-        this.lin = li;
+        this.quest = li;
         this.answer = answer;
         this.markAnswer = mark;
     }

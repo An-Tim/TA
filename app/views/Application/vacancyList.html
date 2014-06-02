@@ -1,0 +1,137 @@
+#{extends 'main.html' /}
+#{set title:'vacancyList' /}
+
+<script type="text/javascript" src="@{'public/js/jquery.js'}" ></script>
+<script type="text/javascript" language="javascript" src="@{'public/js/jquery.dataTables.js'}"></script>
+<script type="text/javascript" language="javascript" src="@{'public/js/jquery-ui-tabs.js'}"></script>
+<script type="text/javascript" charset="utf-8">
+            $(document).ready(function() {
+    $("#tabs").tabs({
+    "show": function(event, ui) {
+    var table = $.fn.dataTable.fnTables(true);
+            if (table.length > 0) {
+    $(table).dataTable().fnAdjustColumnSizing();
+    }
+    }
+    });
+            $('table.display').dataTable({
+    "sScrollY": "200px",
+            "bScrollCollapse": true,
+            "bPaginate": false,
+            "bJQueryUI": true,
+            "aoColumnDefs": [
+            { "sWidth": "10%", "aTargets": [ - 1 ] }
+            ]
+    });
+    });
+</script>
+
+<!-- content -->
+<nav>
+    <ul id="menu">
+        <li class="menu_active nav1"><a href="@{Application.home(u.id)}">Главная </a></li>
+         #{if u.id==2 || u.id==4}
+        <li class="nav3"><a href="@{Application.vacancyList(u.id)}">Вакансии</a></li>
+        <li class="nav3"><a href="@{Application.userList(u.id)}">Пользователи</a></li>
+        #{/if}
+    </ul>
+</nav>
+<section id="content">
+
+
+
+    <p></p>
+    <p></p>
+    <div id="demo">
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Активные</a></li>
+                <li><a href="#tabs-2">Неактивные</a></li>
+            </ul>
+
+            <div id="tabs-1" >
+                <table cellpadding="0" cellspacing="0" border="0" class="display" id="example1" >
+                    <thead>
+                        <tr>
+                            <th>Название</th>
+                            <th>Требуемое количество</th>
+                            <th>Активна с</th>
+                            <th>Количество кандидатов</th>
+                            <th>Закрыть</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Название</th>
+                            <th>Требуемое количество</th>
+                            <th>Активна с</th>
+                            <th>Количество кандидатов</th>
+                            <th>Закрыть</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        #{list items:vac, as:'vac'}
+                        #{if vac.statusVacancy=="активна"}
+                        <tr class="odd gradeX">
+                            <td><a href="@{Application.vacancy(u.id,vac.id)}">${vac.nameVacancy}</a></td>
+                            <td class="center">${vac.amount}</td>
+                            <td class="center">${vac.dateVacancy}</td>
+                            <td class="center">${vac.amount}</td>
+                            <td class="center">
+                                #{form @Application.statusVac(u.id,vac.id)}
+                                <input type="submit" value="Закрыть" />
+                                #{/form}
+
+
+                        </tr>
+                        #{/if} 
+                        #{/list}
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div id="tabs-2">
+                <table cellpadding="0" cellspacing="0" border="0" class="display" id="example2">
+                    <thead>
+                        <tr>
+                            <th>Название</th>
+                            <th>Не активна с</th>
+                            <th>Открыть</th>
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Название</th>
+                            <th>Не активна с</th>
+                            <th>Открыть</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        #{list items:vac1, as:'vac'}
+                        #{if vac.statusVacancy=="не активна"}
+                        <tr class="gradeA">
+                            <td><a href="@{Application.vacancy(u.id, vac.id)}">${vac.nameVacancy}</a></td>
+                            <td class="center">${vac.dateVacancy}</td>
+                            <td class="center">#{form @Application.statusVac(u.id, vac.id)}
+                                <input type="submit" value="Открыть" />
+                                #{/form}</td>
+                            #{/if} 
+                            #{/list}
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br>
+    #{if u.id==2}
+    #{form @Application.newVacancy(u.id)}
+    <input type="submit" id="submitbtn" name="submitbtn" tabindex="5" value="Добавить вакансию">
+    #{/form} 
+    #{/if}
+    ${u.email}
+</section>
