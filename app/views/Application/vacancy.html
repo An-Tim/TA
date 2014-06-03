@@ -1,0 +1,286 @@
+#{extends 'main.html' /}
+#{set title:'vacancyList' /}
+
+<script type="text/javascript" src="@{'public/js/jquery.js'}" ></script>
+<script type="text/javascript" language="javascript" src="@{'public/js/jquery.dataTables.js'}"></script>
+<script type="text/javascript" language="javascript" src="@{'public/js/jquery-ui-tabs.js'}"></script>
+<script type="text/javascript" charset="utf-8">
+            $(document).ready(function() {
+    $("#tabs").tabs({
+    "show": function(event, ui) {
+    var table = $.fn.dataTable.fnTables(true);
+            if (table.length > 0) {
+    $(table).dataTable().fnAdjustColumnSizing();
+    }
+    }
+    });
+            $('table.display').dataTable({
+    "sScrollY": "200px",
+            "bScrollCollapse": true,
+            "bPaginate": false,
+            "bJQueryUI": true,
+            "aoColumnDefs": [
+            { "sWidth": "10%", "aTargets": [ - 1 ] }
+            ]
+    });
+    });</script>
+
+<!-- content -->
+<nav>
+    <ul id="menu">
+        <li class="menu_active nav1"><a href="@{Application.home(u.id)}">Главная </a></li>
+        <li class="nav3"><a href="@{Application.vacancyList(u.id)}">Вакансии</a></li>
+        <li class="nav3"><a href="@{Application.userList(u.id)}">Пользователи</a></li>
+
+    </ul>
+</nav>
+<section id="content">
+    <div id="w">
+
+        <h1>${vac.nameVacancy}</h1>
+
+        <!--    public String nameVacancy;
+            public String descVacancy;
+            public String experience;
+            public String statusVacancy;
+            public String salary;
+            public int amount;
+            public String time;
+            public Date dateVacancy;
+            public String function;
+            public String requirements;
+            public String conditions;-->
+
+        <form id="contactform" name="contact" method="post" action="#"><br><br><br><br><br>
+
+            <div class="row1" >
+                #{if vac.experience}
+                <label for="name">Требуемый опыт работы: <br> ${vac.experience} </label> 
+                #{/if}    
+                #{if vac.salary}
+                <label for="name">Зрплата: <br> ${vac.salary} <span class="req"></span></label> 
+                #{/if} 
+                #{if vac.time} 
+                <label for="name">Тип занятости: <br> ${vac.time} <span class="req"></span></label>
+                #{/if} 
+            </div>
+
+            #{if vac.descVacancy}
+            <div class="row">
+                <label for="name">Описание: <span class="req"></span></label>
+                <label1 for="name">${vac.descVacancy} <span class="req"></span></label1>
+            </div>
+            #{/if} 
+
+            #{if vac.function}
+            <div class="row">
+                <label for="name">Выполняемые функции: <span class="req"></span></label>
+                <label1 for="name"> ${vac.function}<span class="req"></span></label1>
+            </div>
+            #{/if} 
+
+            #{if vac.requirements}
+            <div class="row">
+                <label for="name">Требования к соискателю: <span class="req"></span></label>
+                <label1 for="name">${vac.requirements} <span class="req"></span></label1>
+            </div>
+            #{/if} 
+
+            #{if vac.conditions}
+            <div class="row">
+                <label for="name">Условия работы: <span class="req"></span></label>
+                <label1 for="name">${vac.conditions} <span class="req"></span></label1>
+            </div>
+            #{/if} 
+
+            <HR WIDTH="80%" SIZE="3" COLOR="#8B8989">
+            <br>
+
+            #{if vac.amount}
+            <div class="row">
+                <label1 for="name">Требуемое количество человек: ${vac.amount} <span class="req"></span></label1>
+            </div>
+            #{/if}
+            #{if vac.dateVacancy}
+            <div class="row">
+                <label1 for="name">Вакансия активна с: ${vac.dateVacancy} <span class="req"></span></label1>
+            </div>
+            #{/if}
+
+
+
+
+
+
+
+
+
+
+
+            #{if (u.id!=2 && u.id!=4)}
+            #{form @Application.resume(u.id)}
+            #{/form}
+
+            #{form @Application.resume(u.id,vac.id)}
+            <div class="center">
+                <input type="submit" id="submitbtn" name="submitbtn" tabindex="5" value="Заполнить резюме">
+            </div>
+            #{/form} 
+            #{/if}
+
+
+            #{if u.id==2}
+            <HR WIDTH="80%" SIZE="3" COLOR="#8B8989">
+            <br>
+
+            <p></p>
+            <p></p>
+            <div id="demo">
+                <div id="tabs">
+                    <ul>
+                        <li><a href="#tabs-1">Кандидаты</a></li>
+
+
+                    </ul>
+
+                    <div id="tabs-1" >
+                        <table cellpadding="0" cellspacing="0" border="0" class="display" id="example1" >
+                            <thead>
+                                <tr>
+                                    <th>Фио</th>                            
+                                    <th>Статус</th>
+                                    <th>Количество баллов</th>
+                                    <th>Отказать</th>
+                                    <th>Принять</th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                #{list items:res, as:'res'} 
+                                #{if (res.vac.id==vac.id )}
+                                #{if (res.statusRes!="отказано" )}
+                                <tr class="odd gradeX">
+                                    <td><a href="@{Application.userPage(u.id, res.us.id)}">${res.us.name}</a></td>
+                                    <td class="center">${res.statusRes}</td>
+                                    <td class="center">${res.markUser}</td>
+                                    <td class="center">
+                                        #{form @Application.refuse(u.id, res.id, res.us.id)}
+                                        #{/form}
+                                        #{form @Application.refuse(u.id, res.id, res.us.id)}
+                                        #{/form}
+                                        #{form @Application.refuse(u.id, res.id, res.us.id)}
+                                        <input type="submit" value="Отказать" />
+                                        #{/form}
+                                    <td class="center">
+                                        #{form @Application.refuse(u.id, res.id, res.us.id)}
+                                        #{/form}
+                                        #{form @Application.refuse(u.id, res.id, res.us.id)}
+                                        #{/form}
+                                        #{form @Application.refuse(u.id, res.id, res.us.id)}
+                                        #{/form}
+                                        #{form @Application.refuse(u.id, res.id, res.us.id)}
+                                        #{/form}
+                                        #{form @Application.take(u.id, res.id, res.us.id, vac.id)}
+                                        <input type="submit" value="Приянть" />
+                                        #{/form}
+                                </tr>
+                                #{/if}
+                                #{/if} 
+                                #{/list}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div id="graph">Loading graph...</div>
+
+            <script type="text/javascript">
+var myData = new Array(['0', 0]);
+
+                        #{list items:res, as:'res'}
+                #{if (res.vac.id == vac.id)}
+                #{if (res.statusRes != "отказано")}
+                myData.push(res.us.name,res.markUser);
+                        #{/if}
+                                #{/if} 
+                                        #{/list}
+                                                var myChart = new JSChart('graph', 'bar');
+                                                var colors = ['#7979DB', '#7952E9', '#792BC8', '#792BA1', '#792BA1', '#792B79'];
+                                                myChart.setDataArray(myData);
+                                                myChart.colorizeBars(colors);
+                                                myChart.setAxisValuesColor('#008');
+                                                myChart.setAxisColor('#ABABAB');
+                                                myChart.setAxisWidth(1);
+                                                myChart.setAxisValuesColor('#858585');
+                                                myChart.setAxisNameColor('#858585');
+                                                myChart.setBarBorderColor('#bbb');
+                                                myChart.setBarOpacity(0.8);
+                                                myChart.setBarSpacingRatio(50);
+                                                myChart.setBarValues(false);
+                                                myChart.setTitleColor('#928888');
+                                                myChart.setGridColor('#ABABAB');
+                                                myChart.draw();
+
+            </script>
+
+
+            <br>
+
+            #{list items:form, as:'form'}
+            #{if (form.statusForm == "резюме")}
+            <h2><a href="@{Application.finalTask(u.id,form.id)}" >${form.nameForm}</a></h2>
+
+            #{/if}
+            #{if (form.statusForm == "test")}
+            #{if (form.id == 4)}
+
+            #{/if}
+            #{else}
+
+            <h2><a href="@{Application.doTest(u.id,form.id)}" >Пройти тест</a></h2>
+            #{/else}
+
+            #{/if}
+            #{if (form.vac.id == vac.id)}
+            <h2><a href="@{Application.finalTask(u.id,form.id)}" >${form.nameForm}</a></h2>
+            #{/if}
+            #{/list}
+
+            #{form @Application.editVacancy(u.id,vac.id)}
+            #{/form}
+
+            #{form @Application.editVacancy(u.id,vac.id)}
+            #{/form}
+
+
+
+
+
+            #{form @Application.editVacancy(u.id,vac.id)}
+            <div class="center">
+
+                <input type="submit" id="submitbtn" name="submitbtn" tabindex="5" value="Редактировать">
+
+            </div>
+            #{/form} 
+            #{/if}
+
+
+
+
+
+
+        </form>
+    </div>
+
+
+    <p></p>
+    <p></p>
+    ${u.email}
+</section>
+
+<!-- / content -->

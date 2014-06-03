@@ -1,0 +1,76 @@
+#{extends 'main.html' /}
+#{set title:'Vacancy' /}
+<!-- content -->
+<nav>
+    <ul id="menu">
+        <li class="menu_active nav1"><a href="@{Application.home(u.id)}">Главная </a></li>
+
+    </ul>
+</nav>
+<!-- content -->
+<section id="content">
+    <div id="w">
+
+        <h1>${form.nameForm}</h1>
+
+
+
+        <form id="contactform" name="contact" method="post" action="#"><br><br><br><br><br>
+
+            <div class="row1" >
+
+    
+
+                
+                <q1>Вопрос:</q1> <q2>В каких случаях класс A будет иметь не более одного конструктора, учитывая конструкторы, автоматически сгенерированные компилятором? (код, использующий данный класс, может быть произвольным).</q2><br>
+                <br>              
+                <input type="radio" id="r3" name="rr1" value ="3" checked="checked" /><q2>struct A { A(const A&) {} };</q2><br>
+                <input type="radio" id="r3" name="rr1" value ="3" checked="checked" /><q2>struct A {};</q2><br>
+                <input type="radio" id="r3" name="rr1" value ="3" checked="checked" /><q2>struct A { A() {} };</q2><br>
+                <input type="radio" id="r3" name="rr1" value ="3" checked="checked" /><q2>struct A { explicit A(int) {} };</q2><br>
+                
+                <br>
+                
+                <q1>Вопрос:</q1> <q2>Какие из прототипов синтаксически правильны в С++? </q2><br>
+                <br>              
+                <input type="radio" id="r3" name="rr2" value ="3" checked="checked" /><q2>void foo(int, int, int, int y = 5);</q2><br>
+                <input type="radio" id="r3" name="rr2" value ="3" checked="checked" /><q2>void foo(int x; int y = 5);</q2><br>
+                <input type="radio" id="r3" name="rr2" value ="3" checked="checked" /><q2>void foo(int x, y = 5);</q2><br>
+                <input type="radio" id="r3" name="rr2" value ="3" checked="checked" /><q2>void foo(int x, int y = x);</q2><br>
+                
+                <br>
+                <div>
+                <q1>Вопрос:</q1> <q2>Дан следующий перечисляемый тип enum Enum { a = 0, b = 3, c }; Какой способ из перечисленных позволит обойти только лишь элементы типа Enum и выполнить над каждым из них определенный фрагмент кода?</q2><br>
+                <br>              
+                <input type="radio" id="r3" name="rr3" value ="3"  /><q2>Ни один из перечисленных</q2><br>
+                <input type="radio" id="r3" name="rr3" value ="3"  /><q2>for (int i = a; i <= c; i++) { // do something }</q2><br>
+                <input type="radio" id="r3" name="rr3" value ="3"  /><q2>for (int i = 0; i <= c; i++) { // do something }</q2><br>
+                <input type="radio" id="r3" name="rr3" value ="3"  /><q2>for (int i = a; i < c; i++) {  // do something }</q2><br>
+                
+                </div>       
+
+
+
+                <HR WIDTH="80%" SIZE="3" COLOR="#8B8989">
+                <br>
+
+
+
+               
+                <div class="center">
+                    <h2><a href="@{Application.didtest(u.id)}">Готово </a></h2>
+                </div>
+                
+
+                <HR WIDTH="80%" SIZE="3" COLOR="#8B8989">
+                <br>
+                </form>
+            </div>
+
+
+            <p></p>
+            <p></p>
+${u.email}
+            </section>
+
+            <!-- / content -->

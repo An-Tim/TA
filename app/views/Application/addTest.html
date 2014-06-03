@@ -1,0 +1,100 @@
+#{extends 'main.html' /}
+#{set title:'addTest' /}
+<!-- content -->
+<nav>
+    <ul id="menu">
+        <li class="menu_active nav1"><a href="@{Application.home(u.id)}">Главная </a></li>
+
+    </ul>
+</nav>
+<!-- content -->
+<section id="content">
+    <div id="w">
+
+
+        <!--    public Form (Vacancy vac, String name, String desc, String check, String status)-->
+
+        <form id="contactform" name="contact" method="post" action="#">
+
+            #{form @Application.saveTest(u.id)}
+
+            #{/form}
+
+            #{form @Application.saveTest(u.id,form.id)}
+
+            <div class="row">
+
+                <div class="row">
+                    <h1>${form.nameForm}</h1>
+                </div>
+
+            </div>
+            <br><br><br><br><br>
+
+
+            <div class="row">
+                <label for="name">Вопрос: <span class="req"></span></label>
+                <label1 for="name"><textarea name="question" id="question" class="txtarea" tabindex="4" ></textarea> <span class="req"></span></label1>
+
+                <p></p>
+                <input type="radio" id="r1" name="rr" value ="1" checked="checked" />
+                <label for="r1"><span><input type="text" name="answers1" id="answers1" class="txt" tabindex="1" placeholder="Стив Джобс" ></span></label>
+          
+                 <p></p>
+                <input type="radio" id="r2" name="rr" value ="2" checked="checked" />
+                <label for="r2"><span><input type="text" name="answers2" id="answers2" class="txt" tabindex="1" placeholder="Стив Джобс" ></span></label>
+          
+                 <p></p>
+                <input type="radio" id="r3" name="rr" value ="3" checked="checked" />
+                <label for="r3"><span><input type="text" name="answers3" id="answers3" class="txt" tabindex="1" placeholder="Стив Джобс" ></span></label>
+          
+                 <p></p>
+                <input type="radio" id="r4" name="rr" value ="4" checked="checked" />
+                <label for="r4"><span><input type="text" name="answers4" id="answers4" class="txt" tabindex="1" placeholder="Стив Джобс" ></span></label>
+          
+                <br><br>
+
+                <label for="name">Стоимость вопроса: <span class="req"></span></label>
+                <select class="txtsel" name="valueQuest" id="valueQuest">
+                    <option>1 балл</option>
+                    <option>2 балл</option>
+                    <option>3 балла</option>
+                    <option>4 балла</option>
+                    <option>5 баллов</option>
+                    <option>6 баллов</option>
+                    <option>7 баллов</option>
+                    <option>8 баллов</option>
+                    <option>9 баллов</option>
+                    <option>10 баллов</option>
+
+                </select>
+
+            </div>
+
+
+
+            <HR WIDTH="80%" SIZE="3" COLOR="#8B8989">
+            <br>
+
+
+
+            <div class="center">
+                <input type="submit" id="submitbtn" name="more" tabindex="5" value="Ещё задание>>">
+            </div>
+            #{/form}
+
+            #{form @Application.readyTask(u.id,form.id)}
+
+            <input type="submit" id="submitbtn" name="ready" tabindex="5" class="marg" value="Готово">
+            #{/form}
+
+        </form>
+    </div>
+
+
+    <p></p>
+    <p></p>
+${u.email}
+</section>
+
+<!-- / content -->

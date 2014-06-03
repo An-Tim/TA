@@ -1,0 +1,341 @@
+## YAML Template.
+  
+User(noreg):
+    email:          1
+    pass:           secret
+    name:           Bob
+    statusUser:     noreg
+    
+User(admin):
+    email:          2
+    pass:           secret
+    name:           Bob
+    statusUser:     admin
+    
+User(jeff):
+    email:          e.unuchek@gmail.com
+    pass:           secret
+    name:           Евгений Николаевич   
+    statusUser:     Старший преподаватель, зам зав кафедрой по учебной работе, ответственный от кафедры за СМК
+    
+User(man):
+    email:          4
+    pass:           secret
+    name:           Bob
+    statusUser:     manager
+    
+User(nik):
+    email:          5
+    pass:           secret
+    name:           Стас
+    statusUser:     C++ программист
+    
+User(n):
+    email:          6
+    pass:           secret
+    name:           Вася
+    statusUser:     C++ программист
+    
+Messages(m1): 
+    who:            man
+    whom:           n
+    statusMess:     не прочитанно
+    dateMess:       2009-06-14
+    message:        Привет, как поживаешь?
+    form:           
+    topic:          привет!
+    
+Vacancy(v1):
+
+    nameVacancy:    Программист-разработчик .NET        
+    descVacancy:    IT-компания «ByteProtect» приглашает на постоянную работу в долгосрочные и перспективные проекты разработчиков .Net. Компания  «ByteProtect» является основным разработчиком ПО для страховых компаний в РБ (Белгосстрах и др.) 
+    experience:     1–3 года
+    statusVacancy:  активна
+    salary:         от 2 500$
+    amount:         2
+    time:           Полная занятость, полный день
+    function:       программирование бизнес-логики приложений и пользовательского интерфейса; техническая поддержка и сопровождение разработанных продуктов.
+    requirements:   знание ASP .Net; владение базами данных  (Microsoft SQL Server).
+    conditions:     заработная плата от 2 500 у.е. по результатам собеседования; гибкий график; отпуск 25 календарных дней; вакансия доступна для соискателей с инвалидностью
+    dateVacancy:    2009-06-14
+
+Vacancy(v2):
+
+    nameVacancy:    Тестировщик программного обеспечения (QA)        
+    descVacancy:    Крупный холдинг, лидер на рынке РБ по дистрибьюции продуктов питания и бытовой химии (мировые известные марки и бренды)  приглашает специалиста по автоматизированному тестированию.
+    experience:     3–6 лет
+    statusVacancy:  активна
+    salary:         1000$
+    amount:         1
+    time:           Полная занятость, полный день
+    dateVacancy:    11.10.13    
+    
+Vacancy(v3):
+
+    nameVacancy:    C++ программист        
+    descVacancy:    Крупный холдинг, лидер на рынке РБ по дистрибьюции продуктов питания и бытовой химии (мировые известные марки и бренды)  приглашает специалиста по автоматизированному тестированию.
+    experience:     3–6 лет
+    statusVacancy:  активна
+    salary:         1000$
+    amount:         1
+    time:           Полная занятость, полный день
+    dateVacancy:    11.10.13
+    
+Results(nikr):
+    us:            nik    
+    statusRes:     прошёл собеседование
+    markUser:      20
+    vac:           v3
+    
+Results(nr):
+    us:            n   
+    statusRes:     прошёл тест
+    markUser:      15
+    vac:           v3
+
+Vacancy(v4):
+
+    nameVacancy:    Ведущий Frontend-разработчик       
+    descVacancy:    Крупный холдинг, лидер на рынке РБ по дистрибьюции продуктов питания и бытовой химии (мировые известные марки и бренды)  приглашает специалиста по автоматизированному тестированию.
+    experience:     3–6 лет
+    statusVacancy:  активна
+    salary:         1000$
+    amount:         1
+    time:           Полная занятость, полный день
+    dateVacancy:    11.10.13
+    
+Vacancy(v5):
+
+    nameVacancy:    Java developer       
+    descVacancy:    Крупный холдинг, лидер на рынке РБ по дистрибьюции продуктов питания и бытовой химии (мировые известные марки и бренды)  приглашает специалиста по автоматизированному тестированию.
+    experience:     3–6 лет
+    statusVacancy:  активна
+    salary:         1000$
+    amount:         1
+    time:           Полная занятость, полный день
+    dateVacancy:    11.10.13
+    
+Vacancy(uv):
+
+    nameVacancy:    уникальная       
+    descVacancy:    Крупный холдинг, лидер на рынке РБ по дистрибьюции продуктов питания и бытовой химии (мировые известные марки и бренды)  приглашает специалиста по автоматизированному тестированию.
+    experience:     3–6 лет
+    statusVacancy:  уникальная
+    salary:         1000$
+    amount:         1
+    time:           Полная занятость, полный день
+    dateVacancy:    11.10.13   
+    
+    
+Form(u1):
+
+    vac:            uv
+    nameForm:       Форма для резюме
+    descForm:       форма для резюме
+    checking:       1
+    statusForm:     резюме    
+  
+Questions(u1):
+     
+    question:       ФИО     
+    numQuest:       1
+    valueQuest:     0
+    form:           u1
+    
+Questions(u2):
+     
+    question:       Паспортные данные     
+    numQuest:       2
+    valueQuest:     10
+    form:           u1
+    
+Questions(u3):
+     
+    question:       Образование     
+    numQuest:       3
+    valueQuest:     10
+    form:           u1
+    
+Questions(u4):
+     
+    question:       Место работы\должность\выполняемые функции     
+    numQuest:       4
+    valueQuest:     0
+    form:           u1
+    
+Questions(u5):
+     
+    question:       Профессиональные навыки     
+    numQuest:       5
+    valueQuest:     10
+    form:           u1
+    
+Questions(u6):
+     
+    question:       Личные качества     
+    numQuest:       6
+    valueQuest:     10
+    form:           u1
+    
+Questions(u7):
+     
+    question:       Дополнительная информация     
+    numQuest:       7
+    valueQuest:     10
+    form:           u1
+    
+Questions(u8):
+     
+    question:       Вакансия на которую Вы претендуете     
+    numQuest:       8
+    valueQuest:     10
+    form:           u1
+  
+Form(f1):
+
+    vac:            v5
+    nameForm:       анкета
+    descForm:       анкета вакансии Java developer
+    checking:       1
+    statusForm:     анкета
+    
+Form(f2):
+
+    vac:            v5
+    nameForm:       Задание
+    descForm:       задания для кандидатов на вакансию Java developer
+    checking:       1
+    statusForm:     задание
+    
+Questions(q1):
+     
+    question:       Вы носите штаны?     
+    numQuest:       1
+    valueQuest:     10
+    form:           f1
+    
+Questions(q2):
+     
+    question:       Точно?     
+    numQuest:       2
+    valueQuest:     10
+    form:           f1
+    
+Questions(q3):
+     
+    question:       Вы уверены?     
+    numQuest:       3
+    valueQuest:     10
+    form:           f1
+    
+Variants(v1): 
+    quest:          q1
+    variant:        Да
+    costVariants:   10    
+    
+Variants(v2): 
+    quest:          q1
+    variant:        Нет
+    costVariants:   10  
+    
+Variants(v3): 
+    quest:          q2
+    variant:        Да
+    costVariants:   10  
+    
+Variants(v4): 
+    quest:          q3
+    variant:        Да
+    costVariants:   10 
+    
+Form(test):
+
+    vac:            uv
+    nameForm:       Тест С++
+    descForm:       форма для резюме
+    checking:       1
+    statusForm:     test    
+  
+Questions(t1):
+     
+    question:       В каких случаях класс A будет иметь не более одного конструктора, учитывая конструкторы, автоматически сгенерированные компилятором? (код, использующий данный класс, может быть произвольным).     
+    numQuest:       1
+    valueQuest:     10
+    form:           test
+    
+Variants(t11): 
+    quest:          t1
+    variant:        struct A { A(const A&) {} };
+    costVariants:   10    
+    
+Variants(t12): 
+    quest:          t1
+    variant:        struct A {};
+    costVariants:   0  
+    
+Variants(t13): 
+    quest:          t1
+    variant:        struct A { A() {} };
+    costVariants:   0  
+    
+Variants(t14): 
+    quest:          t1
+    variant:        struct A { explicit A(int) {} };
+    costVariants:   0 
+    
+Questions(t2):
+     
+    question:       Какие из прототипов синтаксически правильны в С++?    
+    numQuest:       2
+    valueQuest:     10
+    form:           test
+    
+Variants(t21): 
+    quest:          t2
+    variant:        void foo(int, int, int, int y = 5);
+    costVariants:   10    
+    
+Variants(t22): 
+    quest:          t2
+    variant:        void foo(int x; int y = 5);
+    costVariants:   0  
+    
+Variants(t23): 
+    quest:          t2
+    variant:        void foo(int x, y = 5);
+    costVariants:   0  
+    
+Variants(t24): 
+    quest:          t2
+    variant:        void foo(int x, int y = x);
+    costVariants:   0 
+    
+Questions(t3):
+     
+    question:       Дан следующий перечисляемый тип enum Enum { a = 0, b = 3, c }; Какой способ из перечисленных позволит обойти только лишь элементы типа Enum и выполнить над каждым из них определенный фрагмент кода?     
+    numQuest:       3
+    valueQuest:     10
+    form:           test
+    
+Variants(t31): 
+    quest:          t3
+    variant:        Ни один из перечисленных
+    costVariants:   10    
+    
+Variants(t32): 
+    quest:          t3
+    variant:        for (int i = a; i <= c; i++) { // do something } 
+    costVariants:   0  
+    
+Variants(t33): 
+    quest:          t3
+    variant:        for (int i = 0; i <= c; i++) { // do something }
+    costVariants:   0  
+    
+Variants(t34): 
+    quest:          t3
+    variant:        for (int i = a; i < c; i++) {  // do something } 
+    costVariants:   0 
+ 
+
+    

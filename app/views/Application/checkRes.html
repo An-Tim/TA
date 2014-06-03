@@ -1,0 +1,89 @@
+#{extends 'main.html' /}
+#{set title:'checkRes' /}
+<!-- content -->
+<nav>
+    <ul id="menu">
+        <li class="menu_active nav1"><a href="@{Application.home(u.id)}">Главная </a></li>
+
+    </ul>
+</nav>
+<!-- content -->
+<section id="content">
+    <div id="w">
+
+        <h1>${form.nameForm}</h1>
+
+
+
+        <form id="contactform" name="contact" method="post" action="#"><br><br><br><br><br>
+
+            <div class="row1" >
+
+
+
+                #{list items:q, as:'q'}
+                #{if (q.form.id == form.id)}
+                <q1>Вопрос:</q1> <q2>${q.question}</q2><br>
+                #{list items:var, as:'var'}
+                #{if (var.quest.id == q.id)}
+                <q3>Желаемый ответ: </q3><q2>${var.variant}</q2><br>
+                #{/if}
+                #{/list}
+                #{list items:ans, as:'ans'}
+                #{if (ans.quest.id == q.id)}
+                <q3>Ответ пользователя: </q3><q2>${ans.answer}</q2><br>
+                #{/if}
+                #{/list}
+                
+                
+                <br><br><br>
+                #{/if}
+                #{/list}
+                
+                
+            
+            
+
+            
+                
+                <label for="name">Оцените ответ: <span class="req"></span></label>
+                <select class="txtsel" name="valueQuest" id="valueQuest">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                </select>
+                
+                
+                <HR WIDTH="80%" SIZE="3" COLOR="#8B8989">
+                <br>
+
+
+
+
+                <div class="center">
+                    <h2><a href="">Оценить </a></h2>
+                </div>
+                <div class="center">
+                    <h2><a href="@{Application.markRes(u.id,user.id)}">Предложить пройти тест </a></h2>
+                </div>
+
+
+                <HR WIDTH="80%" SIZE="3" COLOR="#8B8989">
+                <br>
+                </form>
+            </div>
+
+
+            <p></p>
+            <p></p>
+            ${u.email}
+            </section>
+
+            <!-- / content -->

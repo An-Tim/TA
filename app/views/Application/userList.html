@@ -1,0 +1,159 @@
+#{extends 'main.html' /}
+#{set title:'vacancyList' /}
+
+<script type="text/javascript" src="@{'public/js/jquery.js'}" ></script>
+<script type="text/javascript" language="javascript" src="@{'public/js/jquery.dataTables.js'}"></script>
+<script type="text/javascript" language="javascript" src="@{'public/js/jquery-ui-tabs.js'}"></script>
+<script type="text/javascript" charset="utf-8">
+            $(document).ready(function() {
+    $("#tabs").tabs({
+    "show": function(event, ui) {
+    var table = $.fn.dataTable.fnTables(true);
+            if (table.length > 0) {
+    $(table).dataTable().fnAdjustColumnSizing();
+    }
+    }
+    });
+            $('table.display').dataTable({
+    "sScrollY": "200px",
+            "bScrollCollapse": true,
+            "bPaginate": false,
+            "bJQueryUI": true,
+            "aoColumnDefs": [
+            { "sWidth": "10%", "aTargets": [ - 1 ] }
+            ]
+    });
+    });
+</script>
+
+<!-- content -->
+<nav>
+    <ul id="menu">
+        <li class="menu_active nav1"><a href="@{Application.home(u.id)}">Главная </a></li>
+        <li class="nav3"><a href="@{Application.vacancyList(u.id)}">Вакансии</a></li>
+        
+    </ul>
+</nav>
+<section id="content">
+
+
+
+    <p></p>
+    <p></p>
+    <div id="demo">
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Кандидаты</a></li>
+                <li><a href="#tabs-2">Резерв</a></li>
+                <li><a href="#tabs-3">Приняты</a></li>
+
+            </ul>
+
+            <div id="tabs-1" >
+                <table cellpadding="0" cellspacing="0" border="0" class="display" id="example1" >
+                    <thead>
+                        <tr>
+                            <th>Фио</th>
+                            <th>email</th>
+                            <th>Вакансия</th>
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Фио</th>
+                            <th>email</th>
+                            <th>Вкансия</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        #{list items:user, as:'user'} 
+                        #{if (user.statusUser!="admin" && user.statusUser!="manager" && user.statusUser!="noreg" && user.statusUser!="принят" && user.statusUser!="отказано")}
+                        <tr class="odd gradeX">
+                            <td><a href="@{Application.userPage(u.id,user.id)}">${user.name}</a></td>
+                            <td class="center">${user.email}</td>
+                            <td class="center">${user.statusUser}</td>
+                        </tr>
+                        #{/if} 
+                        #{/list}
+                    </tbody>
+                </table>
+            </div>
+
+            
+            <div id="tabs-2">
+                <table cellpadding="0" cellspacing="0" border="0" class="display" id="example1">
+                    <thead>
+                        <tr>
+                            <th>Фио</th>
+                            <th>email</th>
+                            
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Фио</th>
+                            <th>email</th>
+                            
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        #{list items:user2, as:'user2'} 
+                        #{if (user2.statusUser=="отказано")}
+                        <tr class="odd gradeX">
+                            <td><a href="@{Application.userPage(u.id,user2.id)}">${user2.name}</a></td>
+                            
+                            <td class="center">${user2.email}</td>
+                           
+                        </tr>
+                        #{/if} 
+                        #{/list}
+                    </tbody>
+                </table>
+            </div>
+
+
+            
+
+            <div id="tabs-3">
+                <table cellpadding="0" cellspacing="0" border="0" class="display" id="example2">
+                    <thead>
+                        <tr>
+                            <th>Фио</th>
+                            <th>email</th>
+                            
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Фио</th>
+                            <th>email</th>
+                           
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        #{list items:user3, as:'user3'} 
+                        #{if (user3.statusUser=="принят")}
+                        <tr class="odd gradeX">
+                            <td><a href="@{Application.userPage(u.id,user3.id)}">${user3.name}</a></td>
+                            <td class="center">${user3.email}</td>
+                            
+                        </tr>
+                        #{/if} 
+                        #{/list}
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+    <br>
+
+    #{form @Application.newVacancy(u.id)}
+    <input type="submit" id="submitbtn" name="submitbtn" tabindex="5" value="Добавить вакансию">
+    #{/form} 
+     
+</section>

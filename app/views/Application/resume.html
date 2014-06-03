@@ -1,0 +1,119 @@
+#{extends 'main.html' /}
+#{set title:'Resume' /}
+<!-- content -->
+
+<!-- content -->
+<section id="content">
+    <div id="w">
+
+
+
+        <!--    public String nameVacancy;
+            public String descVacancy;
+            public String experience;
+            public String statusVacancy;
+            public String salary;
+            public int amount;
+            public String time;
+            public Date dateVacancy;
+            public String function;
+            public String requirements;
+            public String conditions;-->
+
+        <form id="contactform" name="contact" method="post" action="#">
+
+            #{form @Application.addRes(u.id)}
+
+            #{/form}
+
+
+            #{form @Application.addRes(u.id,vac.id)}
+
+
+            <div class="row">
+                <label for="name">Резюме для вакансии: <span class="req"></span></label>
+
+                <h1>${vac.nameVacancy}</h1>
+            </div>
+
+            <br><br><br>
+
+            <div class="row1" >
+
+
+
+                <label for="name">Фио: <br>  <input  name="fio" id="fio" class="txt" tabindex="2" placeholder="" required> </label> <br>
+
+                <label for="name">Email: <br>  <input  name="pas" id="pas" class="txt" tabindex="2" placeholder="" > <span class="req"></span></label> 
+
+
+
+            </div>
+
+
+            <div class="row">
+                <label for="name">Образование: <span class="req"></span></label>
+                <label1 for="name"><textarea name="education" id="education" class="txtarea" tabindex="4" ></textarea> <span class="req"></span></label1>
+            </div>
+
+
+
+            <div class="row">
+                <label for="name">Место работы\должность\выполняемые функции: <span class="req"></span></label>
+                <label1 for="name"> <textarea name="job" id="job" class="txtarea" tabindex="4" ></textarea><span class="req"></span></label1>
+            </div>
+
+
+
+            <div class="row">
+                <label for="name">Профессиональные навыки: <span class="req"></span></label>
+                <label1 for="name"><textarea name="skills" id="skills" class="txtarea" tabindex="4" ></textarea> <span class="req"></span></label1>
+            </div>
+
+
+
+            <div class="row">
+                <label for="name">Личные качества: <span class="req"></span></label>
+                <label1 for="name"><textarea name="personal" id="personal" class="txtarea" tabindex="4" ></textarea> <span class="req"></span></label1>
+            </div>
+
+            <div class="row">
+                <label for="name">Дополнительная информация: <span class="req"></span></label>
+                <label1 for="name"><textarea name="info" id="info" class="txtarea" tabindex="4" ></textarea> <span class="req"></span></label1>
+            </div>
+            
+            <label for="name">Пароль(для входа на сайт): <br>  <input  name="pass" id="pass" class="txt" tabindex="2" placeholder="" > <span class="req"></span></label> 
+
+
+
+            <HR WIDTH="80%" SIZE="3" COLOR="#8B8989">
+            <br>
+            <div id="signup1">
+                <div id="signup-ct">
+                    <div id="signup-header">
+                        <br><br><center>
+                            <h2>Ваше резюме отправлено на рассмотрение</h2></center>                      
+                        
+                    </div>
+
+                </div>
+            </div>
+
+            <center><h2><a rel="leanModal" href="#signup1" >Отправить</a></h2></center>
+
+
+            <div class="center">
+                <input type="submit" id="submitbtn" name="submitbtn" tabindex="5" value="ОК">
+            </div>
+
+            #{/form}
+        </form>
+    </div>
+
+
+    <p></p>
+    <p></p>
+ ${u.email}
+</section>
+
+<!-- / content -->

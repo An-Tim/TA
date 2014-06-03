@@ -1,0 +1,147 @@
+#{extends 'main.html' /}
+#{set title:'editVacancy' /}
+<!-- content -->
+<nav>
+    <ul id="menu">
+        <li class="menu_active nav1"><a href="@{Application.home(u.id)}">Главная </a></li>
+        <li class="nav3"><a href="@{Application.vacancyList(u.id)}">Вакансии</a></li>
+        <li class="nav3"><a href="@{Application.userList()}">Пользователи</a></li>
+
+    </ul>
+</nav>
+<!-- content -->
+<section id="content">
+    <div id="w">
+
+        <h1>${vac.nameVacancy}</h1>
+
+        <!--    public String nameVacancy;
+            public String descVacancy;
+            public String experience;
+            public String statusVacancy;
+            public String salary;
+            public int amount;
+            public String time;
+            public Date dateVacancy;
+            public String function;
+            public String requirements;
+            public String conditions;-->
+
+
+
+        <form id="contactform" name="contact" method="post" action="#"><br><br><br><br><br>
+
+            #{form @Application.saveEditVac(u.id,vac.id)}
+            #{/form}
+
+            #{form @Application.saveEditVac(u.id,vac.id)}
+
+            <div class="row1" >
+
+                <label for="name">Требуемый опыт работы: <br> <input  name="experience" id="experience" class="txt1" tabindex="2" placeholder="" value="${vac.experience}" ></label> 
+
+                <label for="name">Зрплата: <br><input  name="salary" id="salary" class="txt1" tabindex="2" placeholder="" value="${vac.salary}">  <span class="req"></span></label> 
+
+                <label for="name">Тип занятости: <br> <input  name="time" id="time" class="txt1" tabindex="2" placeholder="" value="${vac.time} "> <span class="req"></span></label>
+
+            </div>
+
+
+            <div class="row">
+                <label for="name">Описание: <span class="req"></span></label>
+                <label1 for="name"><textarea name="descVacancy" id="descVacancy" class="txtarea" tabindex="4"  >${vac.descVacancy}</textarea> <span class="req"></span></label1>
+            </div>
+
+            <div class="row">
+                <label for="name">Выполняемые функции: <span class="req"></span></label>
+                <label1 for="name"> <textarea name="function" id="function" class="txtarea" tabindex="4" >${vac.function}</textarea><span class="req"></span></label1>
+            </div>
+
+            <div class="row">
+                <label for="name">Требования к соискателю: <span class="req"></span></label>
+                <label1 for="name"><textarea name="requirements" id="requirements" class="txtarea" tabindex="4" >${vac.requirements}</textarea> <span class="req"></span></label1>
+            </div>
+
+            <div class="row">
+                <label for="name">Условия работы: <span class="req"></span></label>
+                <label1 for="name"><textarea name="conditions" id="conditions" class="txtarea" tabindex="4" >${vac.conditions}</textarea> <span class="req"></span></label1>
+            </div>
+
+            <HR WIDTH="80%" SIZE="3" COLOR="#8B8989">
+            <br>
+
+
+            <div class="row">
+                <label1 for="name">Требуемое количество человек: <input type="text" name="amount" id="amount" class="txt1" tabindex="3" placeholder="" value="${vac.amount}"> <span class="req"></span></label1>
+            </div>
+
+            <div class="row">
+                <label1 for="name">Вакансия активна с: ${vac.dateVacancy} <span class="req"></span></label1>
+            </div>
+
+
+            <div class="center">
+                <input type="submit" id="submitbtn" name="submitbtn" tabindex="5" value="Сохранить изменения">
+            </div>
+
+            #{/form} 
+
+            #{form @Application.resume(u.id)}
+            #{/form}
+
+
+
+
+            <HR WIDTH="80%" SIZE="3" COLOR="#8B8989">
+            <br>
+
+
+            #{list items:form, as:'form'}
+            #{if (form.statusForm == "резюме")}
+            <h2><a href="@{Application.finalTask(u.id,form.id)}" >${form.nameForm}</a></h2>
+
+            #{/if}
+            #{if (form.statusForm == "test")}
+            #{if (form.id == 4)}
+            
+            #{/if}
+            #{else}
+
+            <h2><a href="@{Application.doTest(u.id,form.id)}" >Пройти тест</a></h2>
+            #{/else}
+
+            #{/if}
+            #{if (form.vac.id == vac.id)}
+            <h2><a href="@{Application.finalTask(u.id,form.id)}" >${form.nameForm}</a></h2>
+            #{/if}
+            #{/list}
+
+
+            #{form @Application.newTask(u.id,vac.id)}
+            <div class="center">
+                <input type="submit" id="submitbtn" name="submitbtn" tabindex="5" value="Добавить форму">
+            </div>
+            #{/form} 
+
+            #{form @Application.newTestForm(u.id,vac.id)}
+            <div class="center">
+                <input type="submit" id="submitbtn" name="submitbtn" tabindex="5" value="Добавить тест">
+            </div>
+            #{/form} 
+
+
+
+
+
+
+
+        </form>
+    </div>
+
+
+    <p></p>
+    <p></p>
+    ${u.email}
+</section>
+
+<!-- / content -->

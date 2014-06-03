@@ -1,0 +1,199 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<div class="body1">
+	<div class="body2">
+		<div class="main">
+<!-- header -->
+			<header>
+				<div class="wrapper">
+					<nav>
+						<ul id="top_nav">
+							<li class="bg_none"><a href="@{Application.home(u.id)}" class="icon1"></a></li>							
+                                                        #{if u.id==1}
+                                                        <li><a rel="leanModal" href="#signup" class="icon4"></a></li>
+                                                        #{/if}
+                                                        #{if u.id!=1}
+                                                        <li><a href="@{Application.userPage(u.id, u.id)}"  class="icon4"></a></li>
+                                                        #{/if}
+                                                        #{if u.id!=1}
+                                                        <li><a href="@{Application.messageList(u.id)}" class="icon2"></a></li> 
+                                                        <li><a href="@{Application.exit(u.id)}" class="icon3"></a></li>
+                                                        #{/if}
+						</ul>
+				</div>
+                            <div class="wrapper">
+					<h1><a href="@{Application.home(u.id)}" id="logo">KoNya Consulting</a></h1>
+                                        
+					
+				</div>
+				
+			</header>
+<!-- / header -->
+		</div>
+	</div>
+</div>
+<div id="signup">
+    
+    <div id="signup-ct">
+        <div id="signup-header">
+            <h2>Авторизация</h2>
+            
+            <a href="#" class="modal_close"></a>
+        </div>
+
+        <form action="">
+            #{form @Application.come()}
+            #{/form}
+            
+ #{form @Application.come()}
+            <div class="txt-fld">
+                <label for="">Email</label>
+                <input type="text" name="email" id="email">
+            </div>
+            <div class="txt-fld">
+                <label for="">Пароль</label>
+                <input type="text" name="pass" id="pass">
+
+            </div>
+            <div class="btn-fld">
+                <button type="submit" name="submitbtn" >Войти »</button><br><br>
+
+                            </div>
+ #{/form}
+        </form>
+    </div>
+</div>
+<!-- content -->
+<nav>
+			<ul id="menu">
+				<li class="menu_active nav1"><a href="@{Application.home(u.id)}">Главная </a></li>
+                                #{if (u.id!=2 && u.id!=4)}
+				<li class="nav2"><a href="#page_Products">Вакансии </a></li>
+                                #{/if}
+				<li class="nav3"><a href="#page_Contacts">Контакты </a></li>
+                                #{if u.id!=1}
+                                <li class="nav3"><a href="@{Application.vacancyList(u.id)}">Вакансии</a></li>
+                                <li class="nav3"><a href="@{Application.userList(u.id)}">Пользователи</a></li>
+                                #{/if}
+			</ul>
+		</nav>
+<!-- content -->
+		<section id="content">
+		
+			<div id="page_Home">
+				<div id="slider">
+					<img src="@{'public/images/img1.jpg'}" alt="">
+					<img src="@{'public/images/img2.jpg'}" alt="">
+					<img src="@{'public/images/img3.jpg'}" alt="">
+				</div>
+				<div id="slider_shadow"></div>
+                <div class="box1_bot">
+                    <div class="box1_left">
+                        <div class="box1_right">
+                            <div class="box1">
+                                <div class="pad">
+                                    <div class="wrapper pad_bot2">
+                                        <p class="pad_bot1 pad_top1"><strong>Qulix System</strong></p>
+                                        <p> Поставщик услуг по разработке программного обеспечения, тестированию ПО и консалтингу в сфере ИТ.  </p>
+                                        <p> Мы предоставляем лучшие программные решения для бизнеса нашим клиентам по всему миру.</p>
+                                        <p> Присоединяйся!!! </p>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+			</div>
+
+			<div id="page_Products">
+				<h2>Вакансии</h2>
+				<div class="wrapper">
+                                    #{list items:vac, as:'vac'}
+                                    #{if vac.statusVacancy=="активна"}
+                                    #{if vac.id%4==0}
+                                    <div class="wrapper marg_top1">		
+                                    </div>
+                                    #{/if}
+                                    
+					<div class="col1" >
+						<div class="box1_bot">
+							<div class="box1_left">
+								<div class="box1_right">
+									<div class="box1">
+										<div class="pad">
+											<figure class="pad_bot1"><a href="#"><img src="@{'public/images/page3_img1.png'}" alt=""></a></figure>
+											<h3><a href="@{Application.vacancy(u.id,vac.id)}">Вакансия #${vac.id}</a></h3>
+											<p>${vac.nameVacancy}</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                                  #{/if}
+                                    #{/list}
+					
+					
+				</div>
+				<div class="wrapper marg_top1">
+					
+					
+					
+				</div>
+			</div>
+			<div id="page_Contacts">
+				<h2>Contacts</h2>
+				<div class="wrapper">
+					<div class="col3">
+						<div class="box1_bot">
+							<div class="box1_left">
+								<div class="box1_right">
+									<div class="box1">
+										<div class="pad">
+											<form id="ContactForm">
+												<div>
+													<div class="wrapper"><span>Ваше имя: </span><input type="text" class="input" ></div>
+													<div class="wrapper"><span>Ваш email: </span><input type="text" class="input" ></div>
+													<div class="wrapper"><span>Тема: </span><input type="text" class="input" ></div>
+													<div class="textarea_box"><span>Сообщение:</span><textarea name="textarea" cols="1" rows="12"></textarea></div>
+													<a href="#" class="button" onClick="document.getElementById('ContactForm').submit()"><span class="shadow"></span>Отправить</a>
+													<a href="#" class="button" onClick="document.getElementById('ContactForm').reset()"><span class="shadow"></span>Очистить</a>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col1 pad_left1">
+						<div class="box1_bot">
+							<div class="box1_left">
+								<div class="box1_right">
+									<div class="box1">
+										<div class="pad">
+											<p>Страна: Беларусь <br>
+											Город: Минск<br>
+                                            Email:<br>
+											<span class="right marg_right2"><a href="mailto:">qulix@gmail.com</a></span></p>
+                                            <p><span class="right marg_right2">8(00)1234567</span><br>
+											<p class="pad_bot1"><strong>Qulix Systems- Твоя лучшая работа</strong></p>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		${u.email}
+<!-- / content -->
+</section>
+
+
+
