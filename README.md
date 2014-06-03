@@ -1,5 +1,6 @@
 TA
 ==
 
-First project on github
-Just to try it, and first steps with git
+Автоматизированная система подбора персонала.
+
+Framework Play 1.2.7
